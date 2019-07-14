@@ -7,9 +7,22 @@ class AccountForm extends React.Component {
       accountNumber : '',
       recordId : '',
       email : '',
+      address1 : '',
+      address2 : ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
   }
 
 
@@ -39,8 +52,9 @@ class AccountForm extends React.Component {
           <label className="col-2 col-form-label">Account Number</label>
           <div className="col-10">
             <input className="form-control" type="text"
+                name="accountNumber"
                 value={this.state.accountNumber}
-                onChange={ event => this.setState({accountNumber : event.target.value})} />
+                onChange={ this.handleInputChange } />
           </div>
         </div>
 
@@ -48,8 +62,9 @@ class AccountForm extends React.Component {
           <label className="col-2 col-form-label">Record ID</label>
           <div className="col-10">
             <input className="form-control" type="search"
+              name="recordId"
               value={this.state.recordId}
-              onChange={ event => this.setState({recordId : event.target.value})} />
+              onChange={ this.handleInputChange } />
           </div>
         </div>
 
@@ -57,8 +72,29 @@ class AccountForm extends React.Component {
           <label className="col-2 col-form-label">Email</label>
           <div className="col-10">
             <input className="form-control" type="email"
+              name="email"
               value={this.state.email}
-              onChange={event => this.setState({email : event.target.value})} />
+              onChange={this.handleInputChange } />
+          </div>
+        </div>
+
+        <div className="form-group row">
+          <label className="col-2 col-form-label">Address 1</label>
+          <div className="col-10">
+            <input className="form-control" type="text"
+              name="address1"
+              value={this.state.address1}
+              onChange={this.handleInputChange } />
+          </div>
+        </div>
+
+        <div className="form-group row">
+          <label className="col-2 col-form-label">Address 2</label>
+          <div className="col-10">
+            <input className="form-control" type="text"
+              name="address2"
+              value={this.state.address2}
+              onChange={this.handleInputChange } />
           </div>
         </div>
 
